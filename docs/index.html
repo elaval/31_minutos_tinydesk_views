@@ -1,0 +1,43 @@
+<!doctype html>
+<notebook theme="glacier">
+  <title>Untitled</title>
+  <script id="2" type="module" hidden="">
+    // Fetch the data from GitHub
+    const data = await fetch('https://raw.githubusercontent.com/elaval/31_minutos_tinydesk_views/main/views.json')
+      .then(d => d.json());
+
+  </script>
+  <script id="3" type="module">
+    // Create a line chart showing views over time
+    const chart = Plot.plot({
+      marginLeft:70,
+      title: "31 Minutos Tiny Desk Views Over Time",
+      width: 800,
+      height: 400,
+      x: {
+        type: "time",
+        label: "Date"
+      },
+      y: {
+        label: "Views",
+        grid: true
+      },
+      marks: [
+        Plot.lineY(data, {
+          x: d => new Date(d.timestamp),
+          y: "viewCount",
+          stroke: "#e74c3c",
+          strokeWidth: 2
+        }),
+        Plot.dot(data, {
+          x: d => new Date(d.timestamp),
+          y: "viewCount",
+          fill: "#e74c3c",
+          r: 3, tip:true
+        })
+      ]
+    });
+
+    display(chart);
+  </script>
+</notebook>
