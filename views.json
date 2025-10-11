@@ -10,29 +10,443 @@
   },
   {
     "row_number": 3,
-    "timestamp": "2025-10-08T21:06:53.056-03:00",
+    "timestamp": "2025-10-08T22:00:11.419-03:00",
     "id": "UEqTIwRrWvA",
     "title": "31 Minutos: Tiny Desk Concert",
-    "viewCount": 5217178,
-    "likeCount": 757175,
-    "commentCount": 61153
+    "viewCount": 5272165,
+    "likeCount": 763220,
+    "commentCount": 61494
   },
   {
     "row_number": 4,
-    "timestamp": "2025-10-08T21:07:56.279-03:00",
+    "timestamp": "2025-10-08T23:00:21.204-03:00",
     "id": "UEqTIwRrWvA",
     "title": "31 Minutos: Tiny Desk Concert",
-    "viewCount": 5217187,
-    "likeCount": 757278,
-    "commentCount": 61164
+    "viewCount": 5351351,
+    "likeCount": 770365,
+    "commentCount": 61923
   },
   {
     "row_number": 5,
-    "timestamp": "2025-10-08T21:17:37.529-03:00",
+    "timestamp": "2025-10-09T00:00:21.219-03:00",
     "id": "UEqTIwRrWvA",
     "title": "31 Minutos: Tiny Desk Concert",
-    "viewCount": 5226755,
-    "likeCount": 758261,
-    "commentCount": 61218
+    "viewCount": 5428096,
+    "likeCount": 777046,
+    "commentCount": 62290
+  },
+  {
+    "row_number": 6,
+    "timestamp": "2025-10-09T01:00:21.194-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5508390,
+    "likeCount": 779825,
+    "commentCount": 62641
+  },
+  {
+    "row_number": 7,
+    "timestamp": "2025-10-09T02:00:21.232-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5577566,
+    "likeCount": 784345,
+    "commentCount": 62854
+  },
+  {
+    "row_number": 8,
+    "timestamp": "2025-10-09T03:00:21.212-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5626062,
+    "likeCount": 787382,
+    "commentCount": 63038
+  },
+  {
+    "row_number": 9,
+    "timestamp": "2025-10-09T04:00:21.243-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5666520,
+    "likeCount": 789211,
+    "commentCount": 63015
+  },
+  {
+    "row_number": 10,
+    "timestamp": "2025-10-09T05:00:21.191-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5690146,
+    "likeCount": 790184,
+    "commentCount": 63091
+  },
+  {
+    "row_number": 11,
+    "timestamp": "2025-10-09T06:00:21.295-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5705212,
+    "likeCount": 790815,
+    "commentCount": 63134
+  },
+  {
+    "row_number": 12,
+    "timestamp": "2025-10-09T07:00:21.197-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5714404,
+    "likeCount": 791432,
+    "commentCount": 63187
+  },
+  {
+    "row_number": 13,
+    "timestamp": "2025-10-09T08:04:15.874-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5721340,
+    "likeCount": 792326,
+    "commentCount": 63270
+  },
+  {
+    "row_number": 14,
+    "timestamp": "2025-10-09T09:15:56.909-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5734069,
+    "likeCount": 793870,
+    "commentCount": 63429
+  },
+  {
+    "row_number": 15,
+    "timestamp": "2025-10-09T10:00:21.266-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5747933,
+    "likeCount": 795482,
+    "commentCount": 63574
+  },
+  {
+    "row_number": 16,
+    "timestamp": "2025-10-09T11:00:21.280-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5771963,
+    "likeCount": 798000,
+    "commentCount": 63774
+  },
+  {
+    "row_number": 17,
+    "timestamp": "2025-10-09T12:00:21.244-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5800265,
+    "likeCount": 801061,
+    "commentCount": 63997
+  },
+  {
+    "row_number": 18,
+    "timestamp": "2025-10-09T13:00:21.194-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5833317,
+    "likeCount": 804250,
+    "commentCount": 64270
+  },
+  {
+    "row_number": 19,
+    "timestamp": "2025-10-09T14:03:44.427-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5874502,
+    "likeCount": 807995,
+    "commentCount": 64494
+  },
+  {
+    "row_number": 20,
+    "timestamp": "2025-10-09T15:00:21.384-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5913774,
+    "likeCount": 811243,
+    "commentCount": 64714
+  },
+  {
+    "row_number": 21,
+    "timestamp": "2025-10-09T16:00:21.262-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 5960917,
+    "likeCount": 814624,
+    "commentCount": 64944
+  },
+  {
+    "row_number": 22,
+    "timestamp": "2025-10-09T17:00:21.216-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6004632,
+    "likeCount": 817755,
+    "commentCount": 65142
+  },
+  {
+    "row_number": 23,
+    "timestamp": "2025-10-09T18:00:21.212-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6051692,
+    "likeCount": 821004,
+    "commentCount": 65331
+  },
+  {
+    "row_number": 24,
+    "timestamp": "2025-10-09T19:00:21.365-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6085634,
+    "likeCount": 824131,
+    "commentCount": 65538
+  },
+  {
+    "row_number": 25,
+    "timestamp": "2025-10-09T20:00:21.210-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6139190,
+    "likeCount": 830230,
+    "commentCount": 65711
+  },
+  {
+    "row_number": 26,
+    "timestamp": "2025-10-09T21:00:21.214-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6186299,
+    "likeCount": 833587,
+    "commentCount": 65915
+  },
+  {
+    "row_number": 27,
+    "timestamp": "2025-10-09T22:00:21.224-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6237904,
+    "likeCount": 837304,
+    "commentCount": 66267
+  },
+  {
+    "row_number": 28,
+    "timestamp": "2025-10-09T23:00:21.402-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6288200,
+    "likeCount": 841167,
+    "commentCount": 66352
+  },
+  {
+    "row_number": 29,
+    "timestamp": "2025-10-10T00:00:21.235-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6335745,
+    "likeCount": 844881,
+    "commentCount": 66530
+  },
+  {
+    "row_number": 30,
+    "timestamp": "2025-10-10T01:00:21.196-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6392166,
+    "likeCount": 845238,
+    "commentCount": 66711
+  },
+  {
+    "row_number": 31,
+    "timestamp": "2025-10-10T02:00:21.287-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6437675,
+    "likeCount": 850807,
+    "commentCount": 66864
+  },
+  {
+    "row_number": 32,
+    "timestamp": "2025-10-10T03:00:21.299-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6479021,
+    "likeCount": 852546,
+    "commentCount": 66974
+  },
+  {
+    "row_number": 33,
+    "timestamp": "2025-10-10T04:00:21.226-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6507421,
+    "likeCount": 850716,
+    "commentCount": 67045
+  },
+  {
+    "row_number": 34,
+    "timestamp": "2025-10-10T05:00:21.420-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6523730,
+    "likeCount": 851325,
+    "commentCount": 67083
+  },
+  {
+    "row_number": 35,
+    "timestamp": "2025-10-10T06:00:21.261-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6535098,
+    "likeCount": 851689,
+    "commentCount": 67110
+  },
+  {
+    "row_number": 36,
+    "timestamp": "2025-10-10T07:00:21.231-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6541804,
+    "likeCount": 852068,
+    "commentCount": 67147
+  },
+  {
+    "row_number": 37,
+    "timestamp": "2025-10-10T08:00:21.199-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6545967,
+    "likeCount": 852472,
+    "commentCount": 67191
+  },
+  {
+    "row_number": 38,
+    "timestamp": "2025-10-10T09:00:21.267-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6552999,
+    "likeCount": 853128,
+    "commentCount": 67263
+  },
+  {
+    "row_number": 39,
+    "timestamp": "2025-10-10T10:00:21.219-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6564703,
+    "likeCount": 854302,
+    "commentCount": 67393
+  },
+  {
+    "row_number": 40,
+    "timestamp": "2025-10-10T11:00:21.299-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6582716,
+    "likeCount": 855809,
+    "commentCount": 67510
+  },
+  {
+    "row_number": 41,
+    "timestamp": "2025-10-10T12:00:21.312-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6599067,
+    "likeCount": 857691,
+    "commentCount": 67664
+  },
+  {
+    "row_number": 42,
+    "timestamp": "2025-10-10T13:00:21.278-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6625259,
+    "likeCount": 859686,
+    "commentCount": 67814
+  },
+  {
+    "row_number": 43,
+    "timestamp": "2025-10-10T14:00:21.395-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6654233,
+    "likeCount": 861799,
+    "commentCount": 67954
+  },
+  {
+    "row_number": 44,
+    "timestamp": "2025-10-10T15:00:21.226-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6686820,
+    "likeCount": 863993,
+    "commentCount": 68091
+  },
+  {
+    "row_number": 45,
+    "timestamp": "2025-10-10T16:00:21.372-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6718413,
+    "likeCount": 866238,
+    "commentCount": 68226
+  },
+  {
+    "row_number": 46,
+    "timestamp": "2025-10-10T17:00:21.574-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6754128,
+    "likeCount": 868369,
+    "commentCount": 68371
+  },
+  {
+    "row_number": 47,
+    "timestamp": "2025-10-10T20:10:57.636-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6871736,
+    "likeCount": 878501,
+    "commentCount": 68840
+  },
+  {
+    "row_number": 48,
+    "timestamp": "2025-10-10T21:50:51.921-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6940893,
+    "likeCount": 882562,
+    "commentCount": 69042
+  },
+  {
+    "row_number": 49,
+    "timestamp": "2025-10-10T22:00:21.224-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6945929,
+    "likeCount": 882967,
+    "commentCount": 69069
+  },
+  {
+    "row_number": 50,
+    "timestamp": "2025-10-10T23:00:21.240-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 6989518,
+    "likeCount": 885623,
+    "commentCount": 69210
+  },
+  {
+    "row_number": 51,
+    "timestamp": "2025-10-11T00:01:06.432-03:00",
+    "id": "UEqTIwRrWvA",
+    "title": "31 Minutos: Tiny Desk Concert",
+    "viewCount": 7033323,
+    "likeCount": 888439,
+    "commentCount": 69391
   }
-] 
+]
