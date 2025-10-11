@@ -1,0 +1,47 @@
+name: Update YouTube metrics (hourly)
+
+on:
+  schedule:
+    - cron: "5 * * * *"   # run at HH:05 every hour (UTC)
+  workflow_dispatch: {}     # allow manual trigger
+
+permissions:
+  contents: write           # needed to push the updated JSON
+
+concurrency:
+  group: youtube-metrics
+  cancel-in-progress: false
+
+env:
+  DATA_FILE: data/views.json    # adjust path if needed
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run updater
+        run: node scripts/update_youtube.js
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+          VIDEO_ID: ${{ vars.VIDEO_ID }}   # set as a repo variable, or replace with a hardcoded id
+          DATA_FILE: ${{ env.DATA_FILE }}
+
+      - name: Commit & push if changed
+        run: |
+          if ! git diff --quiet -- "${DATA_FILE}"; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add "${DATA_FILE}"
+            git commit -m "chore(data): append YouTube metrics [skip ci]"
+            git push
+          else
+            echo "No changes; nothing to commit."
+          fi

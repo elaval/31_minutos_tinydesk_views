@@ -10,13 +10,17 @@
   <script id="3" type="module">
     // Create a line chart showing views over time
     const chart = Plot.plot({
-      marginLeft:70,
+      style:{fontSize:14},
+      marginLeft:90,
+      marginBottom:40,
       title: "31 Minutos Tiny Desk Views Over Time",
+      subtitle: "Desde 21:00 del Miercoles 8 de Octubre a las 21:00 del Jueves 9 de Octubre de 2025",
       width: 800,
       height: 400,
+      caption:"Fuente de datos: API de YouTube (Google Cloud Platform). Gráfico de @elaval",
       x: {
         type: "time",
-        label: "Date"
+        label: "Hora local en Chile"
       },
       y: {
         label: "Views",
@@ -27,13 +31,14 @@
           x: d => new Date(d.timestamp),
           y: "viewCount",
           stroke: "#e74c3c",
-          strokeWidth: 2
+
+          strokeWidth: 4
         }),
         Plot.dot(data, {
           x: d => new Date(d.timestamp),
           y: "viewCount",
           fill: "#e74c3c",
-          r: 3, tip:true
+          r: 4, tip:true
         })
       ]
     });
