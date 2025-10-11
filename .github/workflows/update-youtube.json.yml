@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  DATA_FILE: data/views.json    # adjust path if needed
+  DATA_FILE: views2.json    # adjust path if needed
 
 jobs:
   update:

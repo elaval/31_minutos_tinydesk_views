@@ -6,7 +6,7 @@ import { dirname } from "node:path";
 
 const API_KEY  = process.env.YT_API_KEY;
 const VIDEO_ID = process.env.VIDEO_ID;
-const DATA_FILE = process.env.DATA_FILE || "data/views2.json";
+const DATA_FILE = process.env.DATA_FILE || "views2.json";
 
 // Basic guards
 if (!API_KEY)  throw new Error("Missing env YT_API_KEY.");
