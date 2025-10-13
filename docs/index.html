@@ -17,6 +17,7 @@
     const chart = Plot.plot({
       style:{fontSize:14},
       marginLeft:90,
+      marginRight:50,
       marginBottom:50,
       title: "31 Minutos Tiny Desk - Reproducciones",
       subtitle: "Desde 21:00 del Miercoles 8 de Octubre",
@@ -44,7 +45,15 @@
           y: "viewCount",
           fill: "#e74c3c",
           r: 1.5, tip:true
-        })
+        }),
+        Plot.text(data, Plot.selectLast({
+          x: d => new Date(d.timestamp),
+          y: "viewCount",
+          text: d => d3.format(".3s")(d.viewCount),
+          dx:5,
+          textAnchor:"start",
+          r: 1.5, tip:true
+        }))
       ]
     });
 
