@@ -7,12 +7,12 @@
       .then(d => d.json());
 
   </script>
-  <script id="5" type="text/x-typescript">
+  <script id="5" type="text/x-typescript" hidden="">
     const data2 = await fetch('https://raw.githubusercontent.com/elaval/31_minutos_tinydesk_views/refs/heads/main/views2.json')
       .then(d => d.text());
 
   </script>
-  <script id="3" type="module">
+  <script id="3" type="module" hidden="">
     // Create a line chart showing views over time
     const chart = Plot.plot({
       style:{fontSize:14},
@@ -20,7 +20,7 @@
       marginRight:50,
       marginBottom:50,
       title: "31 Minutos Tiny Desk - Reproducciones",
-      subtitle: "Desde 21:00 del Miercoles 8 de Octubre",
+      //subtitle: "Desde 21:00 del Miercoles 8 de Octubre",
       width: 800,
       height: 400,
       caption:"Fuente de datos: API de YouTube (Google Cloud Platform). Gráfico de @elaval",
@@ -44,7 +44,17 @@
           x: d => new Date(d.timestamp),
           y: "viewCount",
           fill: "#e74c3c",
-          r: 1.5, tip:true
+          r: 1.5,
+          channels: {
+            "hora":{value:"timestamp", label:"Hora local en Chile"}
+          },
+
+          tip:{
+            format:{
+              "x":false,
+              "hora": d => moment(d).format("DD MMM YYYY - HH:mm ")
+            }
+          }
         }),
         Plot.text(data, Plot.selectLast({
           x: d => new Date(d.timestamp),
@@ -52,11 +62,14 @@
           text: d => d3.format(".3s")(d.viewCount),
           dx:5,
           textAnchor:"start",
-          r: 1.5, tip:true
+          r: 1.5
         }))
       ]
     });
 
     display(chart);
+  </script>
+  <script id="6" type="module" hidden="">
+    import moment from "npm:moment";
   </script>
 </notebook>
