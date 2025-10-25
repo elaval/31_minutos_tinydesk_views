@@ -3,7 +3,7 @@
   <title>Untitled</title>
   <script id="2" type="module" hidden="">
     // Fetch the data from GitHub
-    const data = await fetch('https://raw.githubusercontent.com/elaval/31_minutos_tinydesk_views/refs/heads/main/views2.json')
+    const data = await fetch(`https://raw.githubusercontent.com/elaval/31_minutos_tinydesk_views/refs/heads/main/views2.json?v=${new Date()}`)
       .then(d => d.json());
 
   </script>
