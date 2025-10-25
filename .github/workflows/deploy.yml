@@ -33,6 +33,11 @@ jobs:
       - name: Build site
         run: npm run docs:build
 
+      - name: Copy metrics JSON for Pages
+        run: |
+          mkdir -p docs/.observable/dist
+          cp views2.json docs/.observable/dist/views2.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
