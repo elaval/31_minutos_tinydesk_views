@@ -72,4 +72,69 @@
   <script id="6" type="module" hidden="">
     import moment from "npm:moment";
   </script>
+  <script id="7" type="module" hidden="">
+    // Evolución diaria: último registro de cada día (hora de Chile)
+    const porDia = new Map();
+    for (const d of data) porDia.set(d.timestamp.slice(0, 10), d.viewCount);
+    const diario = [...porDia].map(([dia, views]) => ({date: new Date(dia + "T12:00:00Z"), views}));
+
+    const meses = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    const fmtDia = (d) => `${d.getUTCDate()} ${meses[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+    const fmtNum = (n) => n.toLocaleString("es-CL");
+
+    const ultimo = diario.at(-1);
+    const hace30 = diario.at(-31) ?? diario[0];
+    const promedio30 = Math.round((ultimo.views - hace30.views) / ((ultimo.date - hace30.date) / 864e5));
+
+    // Primer día en que se cruza cada hito de 5 millones
+    const hitos = [];
+    for (let m = 10e6; m <= ultimo.views; m += 5e6) {
+      const d = diario.find((d) => d.views >= m);
+      hitos.push({...d, label: `${m / 1e6} M · ${fmtDia(d.date)}`});
+    }
+
+    const azul = "#2a78d6", grilla = "#e1e0d9", tinta = "#52514e", tenue = "#898781";
+
+    const tarjeta = (etiqueta, valor) => {
+      const el = document.createElement("div");
+      el.style.cssText = "background:#f4f3ef;border-radius:8px;padding:12px 16px;min-width:180px";
+      el.innerHTML = `<div style="font-size:13px;color:${tinta}">${etiqueta}</div>
+        <div style="font-size:24px;font-weight:500;font-variant-numeric:tabular-nums">${valor}</div>`;
+      return el;
+    };
+    const tarjetas = document.createElement("div");
+    tarjetas.style.cssText = "display:flex;flex-wrap:wrap;gap:12px;margin:0 0 16px";
+    tarjetas.append(
+      tarjeta(`Vistas al ${fmtDia(ultimo.date)}`, `${(ultimo.views / 1e6).toLocaleString("es-CL", {maximumFractionDigits: 2})} M`),
+      tarjeta("Promedio diario, últimos 30 días", fmtNum(promedio30))
+    );
+
+    const evolucion = Plot.plot({
+      title: "31 Minutos Tiny Desk - Evolución de las vistas",
+      caption: `Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Último registro diario del conteo de vistas, recogido cada hora con GitHub Actions; serie desde el 8-10-2025 (el video se publicó el 6-10-2025). Gráfico: @elaval · MindTheContext.`,
+      width: 800,
+      height: 400,
+      marginLeft: 50,
+      marginTop: 24,
+      style: {fontSize: 13, color: tenue},
+      x: {type: "utc", label: null, ticks: d3.utcMonth.every(2), tickFormat: (d) => meses[d.getUTCMonth()] + (d.getUTCMonth() === 0 ? " " + d.getUTCFullYear() : "")},
+      y: {domain: [0, Math.ceil(ultimo.views / 5e6) * 5e6], label: null, ticks: 5, tickFormat: (v) => `${v / 1e6} M`},
+      marks: [
+        Plot.gridY({ticks: 5, stroke: grilla, strokeOpacity: 1}),
+        Plot.ruleY([0], {stroke: grilla}),
+        Plot.areaY(diario, {x: "date", y: "views", fill: azul, fillOpacity: 0.1}),
+        Plot.lineY(diario, {x: "date", y: "views", stroke: azul, strokeWidth: 2}),
+        Plot.dot(hitos, {x: "date", y: "views", r: 4.5, fill: azul, stroke: "white", strokeWidth: 2}),
+        // El primer hito queda pegado al eje: su etiqueta va a la derecha
+        Plot.text(hitos.slice(0, 1), {x: "date", y: "views", text: "label", textAnchor: "start", dx: 8, dy: 4, fill: tinta}),
+        Plot.text(hitos.slice(1), {x: "date", y: "views", text: "label", textAnchor: "end", dx: -8, dy: -10, fill: tinta}),
+        Plot.ruleX(diario, Plot.pointerX({x: "date", stroke: tenue, strokeDasharray: "3,3"})),
+        Plot.dot(diario, Plot.pointerX({x: "date", y: "views", r: 4, fill: azul, stroke: "white", strokeWidth: 2})),
+        Plot.tip(diario, Plot.pointerX({x: "date", y: "views", title: (d) => `${fmtDia(d.date)}\n${fmtNum(d.views)} vistas`}))
+      ]
+    });
+
+    display(tarjetas);
+    display(evolucion);
+  </script>
 </notebook>
