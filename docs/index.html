@@ -19,7 +19,7 @@
       marginLeft:90,
       marginRight:50,
       marginBottom:50,
-      title: "31 Minutos Tiny Desk - Reproducciones",
+      title: "31 Minutos Tiny Desk - Visualizaciones",
       //subtitle: "Desde 21:00 del Miercoles 8 de Octubre",
       width: 800,
       height: 400,
@@ -29,7 +29,7 @@
         label: "Fecha"
       },
       y: {
-        label: "Views",
+        label: "Visualizaciones",
         grid: true
       },
       marks: [
@@ -83,8 +83,9 @@
     const fmtNum = (n) => n.toLocaleString("es-CL");
 
     const ultimo = diario.at(-1);
-    const hace30 = diario.at(-31) ?? diario[0];
-    const promedio30 = Math.round((ultimo.views - hace30.views) / ((ultimo.date - hace30.date) / 864e5));
+    // Promedios con los mismos días completos del gráfico de visualizaciones diarias
+    const promedio30 = d3.mean(diarias.slice(-30), (d) => d.views);
+    const promedio7 = d3.mean(diarias.slice(-7), (d) => d.views);
 
     // Primer día en que se cruza cada hito de 5 millones
     const hitos = [];
@@ -105,13 +106,14 @@
     const tarjetas = document.createElement("div");
     tarjetas.style.cssText = "display:flex;flex-wrap:wrap;gap:12px;margin:0 0 16px";
     tarjetas.append(
-      tarjeta(`Vistas al ${fmtDia(ultimo.date)}`, `${(ultimo.views / 1e6).toLocaleString("es-CL", {maximumFractionDigits: 2})} M`),
-      tarjeta("Promedio diario, últimos 30 días", fmtNum(promedio30))
+      tarjeta(`Visualizaciones al ${fmtDia(ultimo.date)}`, `${(ultimo.views / 1e6).toLocaleString("es-CL", {maximumFractionDigits: 2})} M`),
+      tarjeta("Promedio diario, últimos 30 días", fmtNum(Math.round(promedio30))),
+      tarjeta("Promedio diario, últimos 7 días", fmtNum(Math.round(promedio7)))
     );
 
     const evolucion = Plot.plot({
-      title: "31 Minutos Tiny Desk - Evolución de las vistas",
-      caption: `Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Último registro diario del conteo de vistas, recogido cada hora con GitHub Actions; serie desde el 8-10-2025 (el video se publicó el 6-10-2025). Gráfico: @elaval · MindTheContext.`,
+      title: "31 Minutos Tiny Desk - Evolución de las visualizaciones",
+      caption: `Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Último registro diario del conteo de visualizaciones, recogido cada hora con GitHub Actions; serie desde el 8-10-2025 (el video se publicó el 6-10-2025). Gráfico: @elaval · MindTheContext.`,
       width: 800,
       height: 400,
       marginLeft: 50,
@@ -130,7 +132,7 @@
         Plot.text(hitos.slice(1), {x: "date", y: "views", text: "label", textAnchor: "end", dx: -8, dy: -10, fill: tinta}),
         Plot.ruleX(diario, Plot.pointerX({x: "date", stroke: tenue, strokeDasharray: "3,3"})),
         Plot.dot(diario, Plot.pointerX({x: "date", y: "views", r: 4, fill: azul, stroke: "white", strokeWidth: 2})),
-        Plot.tip(diario, Plot.pointerX({x: "date", y: "views", title: (d) => `${fmtDia(d.date)}\n${fmtNum(d.views)} vistas`}))
+        Plot.tip(diario, Plot.pointerX({x: "date", y: "views", title: (d) => `${fmtDia(d.date)}\n${fmtNum(d.views)} visualizaciones`}))
       ]
     });
 
@@ -138,7 +140,7 @@
     display(evolucion);
   </script>
   <script id="8" type="module" hidden="">
-    // Vistas diarias: conteo acumulado interpolado a medianoche (hora de Chile, -03:00)
+    // Visualizaciones diarias: conteo acumulado interpolado a medianoche (hora de Chile, -03:00)
     // entre registros, porque el workflow no corre siempre a la misma hora
     const pts = data
       .map((d) => [new Date(d.timestamp).getTime(), d.viewCount])
@@ -167,14 +169,14 @@
 
     // El concierto fue la noche del 30 de abril en CDMX; el efecto se concentra el 1 de mayo
     const zocalo = anio.filter((d) => d.date.toISOString().startsWith("2026-05-01"))
-      .map((d) => ({...d, label: `Concierto gratuito en el Zócalo de CDMX (30 abr)\n1 may: ${fmtNumD(d.views)} vistas`}));
+      .map((d) => ({...d, label: `Concierto gratuito en el Zócalo de CDMX (30 abr)\n1 may: ${fmtNumD(d.views)} visualizaciones`}));
 
     const azulD = "#2a78d6", grillaD = "#e1e0d9", tintaD = "#52514e", tenueD = "#898781", grisD = "#b4b2a9";
 
-    const diario = Plot.plot({
-      title: "31 Minutos Tiny Desk - Vistas diarias en 2026",
-      subtitle: "Vistas de cada día (puntos) y media móvil de 7 días (línea)",
-      caption: "Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Vistas diarias = diferencia del conteo acumulado a medianoche (hora de Chile), interpolado entre registros horarios. Gráfico: @elaval · MindTheContext.",
+    const graficoDiario = Plot.plot({
+      title: "31 Minutos Tiny Desk - Visualizaciones diarias en 2026",
+      subtitle: "Visualizaciones de cada día (puntos) y media móvil de 7 días (línea)",
+      caption: "Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Visualizaciones diarias = diferencia del conteo acumulado a medianoche (hora de Chile), interpolado entre registros horarios. Gráfico: @elaval · MindTheContext.",
       width: 800,
       height: 400,
       marginLeft: 60,
@@ -194,6 +196,6 @@
       ]
     });
 
-    display(diario);
+    display(graficoDiario);
   </script>
 </notebook>

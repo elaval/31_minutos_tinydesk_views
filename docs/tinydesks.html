@@ -54,9 +54,9 @@
       });
 
     const grafico = Plot.plot({
-      title: "Tiny Desk en estudios de NPR - Reproducciones en YouTube",
+      title: "Tiny Desk en estudios de NPR - Visualizaciones en YouTube",
       subtitle: `${titulo}: ${datos.length} presentaciones desde ${fmtDia(datos.at(-1).publishedAt)} hasta ${fmtDia(hasta)}${todo ? " · con nombre las de 10 M o más" : ""}`,
-      caption: "Fuente: YouTube Data API v3, playlist «NPR Music Tiny Desk Concerts». Conteos de vistas a la fecha del snapshot. Gráfico: @elaval · MindTheContext.",
+      caption: "Fuente: YouTube Data API v3, playlist «NPR Music Tiny Desk Concerts». Conteos de visualizaciones a la fecha del snapshot. Gráfico: @elaval · MindTheContext.",
       width,
       height: todo ? 1000 : 600,
       marginLeft: 50,
@@ -64,7 +64,7 @@
       marginBottom: 50,
       marginTop: 50,
       y: {type: "time", label: "Fecha", tickPadding: 20},
-      x: {label: "Reproducciones en YouTube", grid: true, type: "linear"},
+      x: {label: "Visualizaciones en YouTube", grid: true, type: "linear"},
       marks: [
         Plot.dot(minutos, {x: "views", y: "fecha", r: 25, fill: "yellow"}),
         imagen(altos, 15),
