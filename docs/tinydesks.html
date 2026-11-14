@@ -1,9 +1,10 @@
 <!doctype html>
 <notebook theme="glacier">
-  <title>Tiny Desk en YouTube</title>
+  <title>Untitled</title>
   <script id="1" type="module" hidden="">
-    // Snapshot de todos los Tiny Desk (scripts/snapshot_tinydesks.py), publicado junto al sitio
-    const data = await fetch("./file.json").then((d) => d.json());
+    // Snapshot de todos los Tiny Desk (scripts/snapshot_tinydesks.py), leído desde el sitio
+    // publicado para que funcione igual en Observable Desktop y en GitHub Pages
+    const data = await fetch("https://elaval.github.io/31_minutos_tinydesk_views/file.json").then((d) => d.json());
   </script>
   <script id="2" type="module" hidden="">
     const desde = "2022-05-28";
