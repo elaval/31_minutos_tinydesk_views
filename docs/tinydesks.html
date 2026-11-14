@@ -6,19 +6,34 @@
     // publicado para que funcione igual en Observable Desktop y en GitHub Pages
     const data = await fetch("https://elaval.github.io/31_minutos_tinydesk_views/file.json").then((d) => d.json());
   </script>
+  <script id="3" type="module" hidden="">
+    // Períodos para filtrar; "N años" se cuenta hacia atrás desde el video más reciente del snapshot
+    const ultimo = new Date(d3.max(data, (d) => d.publishedAt));
+    const haceAnios = (n) => new Date(Date.UTC(ultimo.getUTCFullYear() - n, ultimo.getUTCMonth(), ultimo.getUTCDate())).toISOString();
+    const periodos = new Map([
+      ["Desde el regreso al estudio tras la pandemia (may 2022)", {desde: "2022-05-28", titulo: "Desde el regreso tras la pandemia"}],
+      ["Últimos 4 años", {desde: haceAnios(4), titulo: "Últimos 4 años"}],
+      ["Últimos 5 años", {desde: haceAnios(5), titulo: "Últimos 5 años"}],
+      ["Todo el período (desde 2009)", {desde: "2008-01-01", titulo: "Todo el período"}]
+    ]);
+    const periodo = view(Inputs.radio(periodos, {label: "Período", value: periodos.get("Desde el regreso al estudio tras la pandemia (may 2022)")}));
+  </script>
   <script id="2" type="module" hidden="">
-    const desde = "2022-05-28";
-    const limiteAlto = 5000000;
+    const {desde, titulo} = periodo;
+    const todo = desde < "2009";
+    // En el período completo hay ~160 videos sobre 5 M; con nombre solo los de 10 M o más
+    const limiteAlto = todo ? 10000000 : 5000000;
 
     const meses = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
     const fmtDia = (iso) => {
       const d = new Date(iso);
       return `${d.getUTCDate()} ${meses[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
     };
-    const artista = (d) => d.title.match(/(.*): Tiny/)?.[1] ?? d.title;
+    // Hasta ~2021 el título era "Artista: NPR Music Tiny Desk Concert"; después, "Artista: Tiny Desk Concert"
+    const artista = (d) => d.title.match(/(.*?): NPR Music Tiny/)?.[1] ?? d.title.match(/(.*): Tiny/)?.[1] ?? d.title;
 
     const datos = data
-      .filter((d) => d.publishedAt > desde)
+      .filter((d) => d.publishedAt >= desde)
       .map((d) => ({...d, views: +d.viewCount, fecha: new Date(d.publishedAt)}))
       .sort((a, b) => b.fecha - a.fecha);
     const hasta = datos[0].publishedAt;
@@ -40,10 +55,10 @@
 
     const grafico = Plot.plot({
       title: "Tiny Desk en estudios de NPR - Reproducciones en YouTube",
-      subtitle: `${datos.length} presentaciones desde ${fmtDia(desde)} hasta ${fmtDia(hasta)}`,
+      subtitle: `${titulo}: ${datos.length} presentaciones desde ${fmtDia(datos.at(-1).publishedAt)} hasta ${fmtDia(hasta)}${todo ? " · con nombre las de 10 M o más" : ""}`,
       caption: "Fuente: YouTube Data API v3, playlist «NPR Music Tiny Desk Concerts». Conteos de vistas a la fecha del snapshot. Gráfico: @elaval · MindTheContext.",
       width,
-      height: 600,
+      height: todo ? 1000 : 600,
       marginLeft: 50,
       marginRight: 100,
       marginBottom: 50,
