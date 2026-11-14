@@ -1,0 +1,63 @@
+<!doctype html>
+<notebook theme="glacier">
+  <title>Tiny Desk en YouTube</title>
+  <script id="1" type="module" hidden="">
+    // Snapshot de todos los Tiny Desk (scripts/snapshot_tinydesks.py), publicado junto al sitio
+    const data = await fetch("./file.json").then((d) => d.json());
+  </script>
+  <script id="2" type="module" hidden="">
+    const desde = "2022-05-28";
+    const limiteAlto = 5000000;
+
+    const meses = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    const fmtDia = (iso) => {
+      const d = new Date(iso);
+      return `${d.getUTCDate()} ${meses[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+    };
+    const artista = (d) => d.title.match(/(.*): Tiny/)?.[1] ?? d.title;
+
+    const datos = data
+      .filter((d) => d.publishedAt > desde)
+      .map((d) => ({...d, views: +d.viewCount, fecha: new Date(d.publishedAt)}))
+      .sort((a, b) => b.fecha - a.fecha);
+    const hasta = datos[0].publishedAt;
+
+    const altos = datos.filter((d) => d.views >= limiteAlto);
+    const bajos = datos.filter((d) => d.views < limiteAlto);
+    const minutos = datos.filter((d) => /Minutos/.test(d.title));
+
+    const imagen = (subset, r) =>
+      Plot.image(subset, {
+        x: "views",
+        y: "fecha",
+        src: "url",
+        r,
+        preserveAspectRatio: "xMidYMin slice",
+        channels: {artista: {value: artista, label: "Artista"}, publicado: {value: (d) => fmtDia(d.publishedAt), label: "Publicado"}},
+        tip: {format: {artista: true, publicado: true, x: (v) => v.toLocaleString("es-CL"), y: false, src: false}}
+      });
+
+    const grafico = Plot.plot({
+      title: "Tiny Desk en estudios de NPR - Reproducciones en YouTube",
+      subtitle: `${datos.length} presentaciones desde ${fmtDia(desde)} hasta ${fmtDia(hasta)}`,
+      caption: "Fuente: YouTube Data API v3, playlist «NPR Music Tiny Desk Concerts». Conteos de vistas a la fecha del snapshot. Gráfico: @elaval · MindTheContext.",
+      width,
+      height: 600,
+      marginLeft: 50,
+      marginRight: 50,
+      marginBottom: 50,
+      marginTop: 50,
+      y: {type: "time", label: "Fecha", tickPadding: 20},
+      x: {label: "Reproducciones en YouTube", grid: true, type: "linear"},
+      marks: [
+        Plot.dot(minutos, {x: "views", y: "fecha", r: 25, fill: "yellow"}),
+        imagen(altos, 15),
+        imagen(bajos, 10),
+        Plot.text(altos, {x: "views", y: "fecha", text: artista, dy: 30}),
+        Plot.ruleX([0])
+      ]
+    });
+
+    display(grafico);
+  </script>
+</notebook>
