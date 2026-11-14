@@ -137,4 +137,63 @@
     display(tarjetas);
     display(evolucion);
   </script>
+  <script id="8" type="module" hidden="">
+    // Vistas diarias: conteo acumulado interpolado a medianoche (hora de Chile, -03:00)
+    // entre registros, porque el workflow no corre siempre a la misma hora
+    const pts = data
+      .map((d) => [new Date(d.timestamp).getTime(), d.viewCount])
+      .sort((a, b) => a[0] - b[0]);
+    const enHora = (t) => {
+      const i = d3.bisector((p) => p[0]).left(pts, t);
+      if (i === 0 || i >= pts.length) return null;
+      const [t0, v0] = pts[i - 1], [t1, v1] = pts[i];
+      return v0 + ((v1 - v0) * (t - t0)) / (t1 - t0);
+    };
+
+    const diarias = [];
+    for (let t = Date.parse("2025-12-26T00:00:00-03:00"); ; t += 864e5) {
+      const a = enHora(t), b = enHora(t + 864e5);
+      if (b === null) break;
+      diarias.push({date: new Date(t + 12 * 36e5), views: b - a});
+    }
+    diarias.forEach((d, i) => {
+      d.media7 = i >= 6 ? d3.mean(diarias.slice(i - 6, i + 1), (x) => x.views) : null;
+    });
+    const anio = diarias.filter((d) => d.date.getUTCFullYear() >= 2026);
+
+    const mesesD = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    const fmtDiaD = (d) => `${d.getUTCDate()} ${mesesD[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+    const fmtNumD = (n) => Math.round(n).toLocaleString("es-CL");
+
+    // El concierto fue la noche del 30 de abril en CDMX; el efecto se concentra el 1 de mayo
+    const zocalo = anio.filter((d) => d.date.toISOString().startsWith("2026-05-01"))
+      .map((d) => ({...d, label: `Concierto gratuito en el Zócalo de CDMX (30 abr)\n1 may: ${fmtNumD(d.views)} vistas`}));
+
+    const azulD = "#2a78d6", grillaD = "#e1e0d9", tintaD = "#52514e", tenueD = "#898781", grisD = "#b4b2a9";
+
+    const diario = Plot.plot({
+      title: "31 Minutos Tiny Desk - Vistas diarias en 2026",
+      subtitle: "Vistas de cada día (puntos) y media móvil de 7 días (línea)",
+      caption: "Fuente: YouTube Data API v3, video «31 Minutos: Tiny Desk Concert» (NPR Music). Vistas diarias = diferencia del conteo acumulado a medianoche (hora de Chile), interpolado entre registros horarios. Gráfico: @elaval · MindTheContext.",
+      width: 800,
+      height: 400,
+      marginLeft: 60,
+      marginTop: 24,
+      style: {fontSize: 13, color: tenueD},
+      x: {type: "utc", label: null, ticks: d3.utcMonth.every(1), tickFormat: (d) => mesesD[d.getUTCMonth()]},
+      y: {domain: [0, Math.ceil(d3.max(anio, (d) => d.views) / 10000) * 10000], label: null, ticks: 5, tickFormat: fmtNumD},
+      marks: [
+        Plot.gridY({ticks: 5, stroke: grillaD, strokeOpacity: 1}),
+        Plot.ruleY([0], {stroke: grillaD}),
+        Plot.dot(anio, {x: "date", y: "views", r: 2, fill: grisD}),
+        Plot.lineY(anio, {x: "date", y: "media7", stroke: azulD, strokeWidth: 2}),
+        Plot.dot(zocalo, {x: "date", y: "views", r: 4.5, fill: azulD, stroke: "white", strokeWidth: 2}),
+        Plot.text(zocalo, {x: "date", y: "views", text: "label", textAnchor: "start", dx: 10, fill: tintaD}),
+        Plot.ruleX(anio, Plot.pointerX({x: "date", stroke: tenueD, strokeDasharray: "3,3"})),
+        Plot.tip(anio, Plot.pointerX({x: "date", y: "views", title: (d) => `${fmtDiaD(d.date)}\nEse día: ${fmtNumD(d.views)}\nMedia 7 días: ${fmtNumD(d.media7)}`}))
+      ]
+    });
+
+    display(diario);
+  </script>
 </notebook>
